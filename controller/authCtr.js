@@ -32,7 +32,7 @@ const authCtr = {
             res.status(500).send("password invaild");
             return;
         }
-        const data = user.toJSON;
+        const data = user.toJSON();
         delete data.password;
         const token = jwt.sign({
             _id: data._id ,

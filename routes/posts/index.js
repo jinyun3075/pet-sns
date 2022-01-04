@@ -2,18 +2,19 @@ const express =require('express');
 const router = express.Router();
 const upload = require('../../module/multer');
 const postCtr = require('../../controller/postCtr');
+const checkUser = require('../../module/checkUser');
 
-router.get('/upload',(req,res) => {
+router.get('/upload',checkUser,(req,res) => {
     res.render('upload');
 });
 
 router.get('/:id', postCtr.detail);
 
-router.get('/update/:id', postCtr.updateLayout);
+router.get('/update/:id',checkUser, postCtr.updateLayout);
 
-router.post('/',upload.single("image"),postCtr.upload);
+router.post('/',checkUser,upload.single("image"),postCtr.upload);
 
-router.post('/update/:id',postCtr.update);
+router.post('/update/:id',checkUser,postCtr.update);
 
-router.post('/delete/:id',postCtr.delete);
+router.post('/delete/:id',checkUser,postCtr.delete);
 module.exports = router;

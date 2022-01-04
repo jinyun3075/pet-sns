@@ -22,6 +22,7 @@ const postCtr = {
             content : content,
             image: image,
             publishedDate: publishedDate,
+            user: req.userInfo,
         });
         try {
             await post.save();
